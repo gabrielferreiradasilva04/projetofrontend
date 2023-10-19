@@ -34,7 +34,7 @@
         </v-btn>
         <br>
         <br>
-        <a id="login-router">Já possuo uma Conta</a>
+        <a id="login-router" @click="showMessageDialog=true">Já possuo uma Conta</a>
       </v-form>
     </v-sheet>
     <!--Open mail validation dialog-->
@@ -43,7 +43,8 @@
     <TermsDialog v-if="termsDialog" @closeTermsDialog="termsDialog=false"/>
 
     <!--Open alertMessage dialog-->
-    <MessageDialog v-if="showMessageDialog"/>
+    <MessageDialog v-bind:message="msg" v-if="showMessageDialog" 
+    @closeMessageDialog="showMessageDialog=false"/>
 
   </div>
 </template>
@@ -95,7 +96,8 @@ export default {
     //dialog fields
     dialog: false,
     termsDialog: false,
-    showMessageDialog: true
+    showMessageDialog: true,
+    msg: "Erro"
   }),
 
   methods: {

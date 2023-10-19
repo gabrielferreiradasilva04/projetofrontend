@@ -1,15 +1,16 @@
 <template>
-    <v-dialog width="500">
-        <template v-slot:default="{ isActive }">
+    <v-dialog width="500" v-model="showMessageDialog" persistent>
+        <template>
             <v-card title="Dialog">
                 <v-card-text>
-                    {{ message }}
+                    <br>
+                   <strong> {{ message }} </strong>
                 </v-card-text>
 
                 <v-card-actions>
                     <v-spacer></v-spacer>
 
-                    <v-btn text="Close Dialog" @click="isActive.value = false"></v-btn>
+                    <v-btn text="OK" @click="$emit('closeMessageDialog')" class="warning alert-button">OK</v-btn>
                 </v-card-actions>
             </v-card>
         </template>
@@ -20,8 +21,21 @@
 export default{
     name: 'MessageDialog',
     
-    props:['message']
+    props:['message'],
+
+    data(){
+        return{
+            showMessageDialog: true
+        }
+    }
 
 }
 
 </script>
+
+<style scoped>
+.alert-button{
+    color: #FFF;
+}
+
+</style>
